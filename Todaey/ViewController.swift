@@ -43,7 +43,30 @@ class TodoListViewController: UITableViewController {
         }
         
         tableView.deselectRow(at: indexPath, animated: true)          // to flash grey the highlighter and disappear soon
+        }
+    
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         
+        var textFiled = UITextField()
+        
+        let alert = UIAlertController(title: "Add New Todaey List", message: "", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
+            //What will happen once user clicks on the UI Alert button
+            print("Sucess")
+            //print(textFiled.text)
+            self.ArrayList.append(textFiled.text!)
+            self.tableView.reloadData()
+        }
+        
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Crete new item"
+         textFiled = alertTextField
+        }
+        
+        alert.addAction(action)
+        
+        present(alert, animated: true, completion: nil)
         
     }
     
